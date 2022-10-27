@@ -1,14 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id("com.apollographql.apollo3").version("$apollo_version")
 }
 
 android {
-    namespace 'cs395t.gch694.aniview_kun'
+    namespace 'com.android.aniview_kun'
     compileSdk 32
 
     defaultConfig {
-        applicationId "cs395t.gch694.aniview_kun"
+        applicationId "com.android.aniview_kun"
         minSdk 32
         targetSdk 32
         versionCode 1
@@ -30,6 +33,19 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+}
+
+apollo {
+    packageName.set("com.android.aniview_kun")
+    generateKotlinModels.set(true)
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {
@@ -41,4 +57,19 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // Apollo GraphQL
+    implementation("com.apollographql.apollo3:apollo-runtime:$apollo_version")
+    implementation("com.apollographql.apollo3:apollo-api:$apollo_version")
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    def lifecycle_version = "2.5.1"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.fragment:fragment-ktx:1.5.3"
 }

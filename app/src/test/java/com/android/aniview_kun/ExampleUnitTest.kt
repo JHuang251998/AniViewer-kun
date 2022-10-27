@@ -1,4 +1,4 @@
-package cs395t.gch694.aniview_kun
+package com.android.aniview_kun
 
 import org.junit.Test
 
