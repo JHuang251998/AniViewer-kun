@@ -1,0 +1,42 @@
+directive @cacheControl(
+    maxAge: Int
+    scope: CacheControlScope
+) on FIELD_DEFINITION | OBJECT | INTERFACE
+enum CacheControlScope {
+    PUBLIC
+    PRIVATE
+}
+
+type Page {
+    pageInfo: PageInfo
+    media: [Media]
+}
+
+type PageInfo {
+    total: Int
+    currentPage: Int
+    lastPage: Int
+    hasNextPage: Boolean
+    perPage: Int
+}
+
+type AnimeList {
+    Page: Page
+    media: [Media]
+}
+
+type Media {
+    id: Int
+    title: Title
+}
+
+type Title {
+    romaji: String
+}
+
+type Query {
+    Page (page: Int, perPage: Int, id: Int): Page
+    Title (romaji: String): Title
+}
+
+scalar Upload

@@ -1,11 +1,16 @@
-package cs395t.gch694.aniview_kun
+package com.android.aniviewer_kun
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 
 class MainActivity : AppCompatActivity() {
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        viewModel.getMedia()
     }
 }
