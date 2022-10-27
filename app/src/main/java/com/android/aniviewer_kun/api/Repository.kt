@@ -1,6 +1,6 @@
-package com.android.aniview_kun.api
+package com.android.aniviewer_kun.api
 
-import com.android.aniview_kun.AnimeListQuery
+import com.android.aniviewer_kun.AnimeListQuery
 
 class Repository(private val api: AniListApi) {
     suspend fun getMedia() {

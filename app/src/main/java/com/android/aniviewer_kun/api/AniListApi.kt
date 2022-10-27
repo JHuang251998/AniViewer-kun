@@ -1,4 +1,4 @@
-package com.android.aniview_kun.api
+package com.android.aniviewer_kun.api
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient

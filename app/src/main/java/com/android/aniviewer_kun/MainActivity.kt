@@ -1,4 +1,4 @@
-package com.android.aniview_kun
+package com.android.aniviewer_kun
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

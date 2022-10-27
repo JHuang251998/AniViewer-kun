@@ -1,4 +1,4 @@
-package com.android.aniview_kun
+package com.android.aniviewer_kun
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

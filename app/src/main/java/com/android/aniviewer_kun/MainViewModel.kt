@@ -1,11 +1,9 @@
-package com.android.aniview_kun
+package com.android.aniviewer_kun
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.aniview_kun.api.AniListApi
-import com.android.aniview_kun.api.Repository
+import com.android.aniviewer_kun.api.AniListApi
+import com.android.aniviewer_kun.api.Repository
 import com.apollographql.apollo3.exception.ApolloException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.android.aniview_kun
+package com.android.aniviewer_kun
 
 import org.junit.Test
 
