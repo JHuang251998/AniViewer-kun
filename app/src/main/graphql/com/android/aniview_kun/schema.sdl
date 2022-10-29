@@ -9,7 +9,23 @@ enum CacheControlScope {
 
 type Page {
     pageInfo: PageInfo
-    media: [Media]
+    media(status: MediaStatus, type: MediaType, sort: [MediaSort]): [Media]
+}
+
+enum MediaSort {
+    TITLE_ROMAJI
+    TITLE_ROMAJI_DESC
+    START_DATE
+    START_DATE_DESC
+    SCORE
+    SCORE_DESC
+    POPULARITY
+    POPULARITY_DESC
+    TRENDING
+    TRENDING_DESC
+    SEARCH_MATCH
+    FAVOURITES
+    FAVOURITES_DESC
 }
 
 type PageInfo {
@@ -20,23 +36,84 @@ type PageInfo {
     perPage: Int
 }
 
-type AnimeList {
-    Page: Page
-    media: [Media]
-}
-
 type Media {
     id: Int
     title: Title
+    coverImage: MediaCoverImage
+    genres: [String]
+    averageScore: Int
+    season: MediaSeason
+    seasonYear: Int
+    episodes: Int
+    description: String
+    format: MediaFormat
+    status: MediaStatus
+    type: MediaType
+    nextAiringEpisode: AiringSchedule
+    popularity: Int
+}
+
+enum MediaType {
+    ANIME
+    MANGA
+}
+
+enum MediaFormat {
+    TV
+    TV_SHORT
+    MOVIE
+    SPECIAL
+    OVA
+    ONA
+    MUSIC
+    MANGA
+    NOVEL
+    ONE_SHOT
+}
+
+enum MediaSeason {
+    SPRING
+    SUMMER
+    WINTER
+    FALL
+}
+
+enum MediaStatus {
+    FINISHED
+    RELEASING
+    NOT_YET_RELEASED
+    CANCELLED
+    HIATUS
+}
+
+type MediaCoverImage {
+    medium: String
 }
 
 type Title {
     romaji: String
+    english: String
+}
+
+type AiringSchedule {
+    id: Int
+    airingAt: Int
+    timeUntilAiring: Int
+    episode: Int
+    mediaId: Int
+    media: Media
+}
+
+type FuzzyDate {
+    year: Int
+    month: Int
+    day: Int
 }
 
 type Query {
-    Page (page: Int, perPage: Int, id: Int): Page
-    Title (romaji: String): Title
+    Page: Page
+    Media: Media
+    Title: Title
 }
 
 scalar Upload

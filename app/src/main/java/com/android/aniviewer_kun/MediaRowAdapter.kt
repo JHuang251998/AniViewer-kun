@@ -5,16 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.aniviewer_kun.api.Media
 import com.android.aniviewer_kun.databinding.RowMediaBinding
+import com.android.aniviewer_kun.glide.Glide
+import com.android.aniviewer_kun.type.MediaStatus
 
 
 class MediaRowAdapter(private val viewModel: MainViewModel)
-    : ListAdapter<Media, MediaRowAdapter.VH>(RedditDiff()) {
+    : ListAdapter<MediaListQuery.Medium?, MediaRowAdapter.VH>(RedditDiff()) {
+
+    private var media = listOf<MediaListQuery.Medium?>()
 
     inner class VH(val binding: RowMediaBinding): RecyclerView.ViewHolder(binding.root) {
         init {
-            // TODO: set onClickListener here
         }
     }
 
@@ -35,14 +37,49 @@ class MediaRowAdapter(private val viewModel: MainViewModel)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        println("ROW CREATED")
+        val binding = holder.binding
+        val anime = media[position]
+        binding.romajiTitle.text = anime?.title?.romaji
+        if (anime?.averageScore != null) {
+            binding.averageScore.text = "${anime?.averageScore}%"
+        }
+
+        if (anime?.status == MediaStatus.RELEASING) {
+            var episodeText = ""
+            if (anime?.nextAiringEpisode?.episode != null && anime?.episodes != null) episodeText = "${anime?.nextAiringEpisode?.episode - 1}/${anime?.episodes} episodes - "
+            else if (anime?.nextAiringEpisode?.episode != null) episodeText = "${anime?.nextAiringEpisode.episode} episodes - "
+            else if (anime?.episodes != null) episodeText = "${anime?.episodes} episodes - "
+            binding.mediaInfo.text =
+                "${episodeText}${anime?.season.toString()} ${anime?.seasonYear}"
+
+            if (anime.coverImage?.medium != null) {
+                Glide.glideFetch(
+                    anime.coverImage?.medium,
+                    binding.subRowPic
+                )
+            } else {
+                binding.subRowPic.setImageResource(R.drawable.ic_cookie_foreground)
+            }
+        }
+
+        viewModel.fetchDone.postValue(true)
     }
 
-    class RedditDiff : DiffUtil.ItemCallback<Media>() {
-        override fun areItemsTheSame(oldItem: Media, newItem: Media): Boolean {
+    fun setMedia(list: List<MediaListQuery.Medium?>?) {
+        media = list ?: listOf()
+    }
+
+    class RedditDiff : DiffUtil.ItemCallback<MediaListQuery.Medium?>() {
+        override fun areItemsTheSame(
+            oldItem: MediaListQuery.Medium,
+            newItem: MediaListQuery.Medium
+        ): Boolean {
             return false
         }
-        override fun areContentsTheSame(oldItem: Media, newItem: Media): Boolean {
+        override fun areContentsTheSame(
+            oldItem: MediaListQuery.Medium,
+            newItem: MediaListQuery.Medium
+        ): Boolean {
             return false
 
         }

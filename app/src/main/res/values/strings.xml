@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">AniViewer-kun</string>
-    <string name="airing">Airing</string>
+    <string name="airing">Now Airing</string>
     <string name="menu">Menu</string>
+    <string name="filterSort">Sort by:</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -39,8 +39,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        viewModel.getMedia()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,41 +51,4 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        val activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(activityMainBinding.root)
-//
-//        // setup nav drawer
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//        val navController = navHostFragment.navController
-//        //val appBarConfiguration = AppBarConfiguration(topLevelDestinationIds = setOf(), fallbackOnNavigateUpListener  = ::onSupportNavigateUp)
-//        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-//        val appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
-////        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-////            .setupWithNavController(navController, appBarConfiguration) as Toolbar
-////        val layout = findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar_layout)
-////        layout.setupWithNavController(toolbar, navController, appBarConfiguration)
-//
-//        findViewById<NavigationView>(R.id.nav_view)
-//            .setupWithNavController(navController)
-//
-//        addHomeFragment()
-//        viewModel.getMedia()
-//    }
-//
-//    private fun addHomeFragment() {
-//        supportFragmentManager.commit {
-//            add(R.id.nav_host_fragment, AiringFragment())
-//            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//        }
-//    }
-//
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = findNavController(R.id.nav_host_fragment)
-//        val appBarConfiguration = AppBarConfiguration(topLevelDestinationIds = setOf(), fallbackOnNavigateUpListener  = ::onSupportNavigateUp)
-//        return navController.navigateUp(appBarConfiguration)
-//                || super.onSupportNavigateUp()
-//    }
 }
