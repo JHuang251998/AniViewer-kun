@@ -1,0 +1,29 @@
+query MediaListQuery($status: MediaStatus, $type: MediaType!, $sort: [MediaSort]!) {
+    Page {
+        pageInfo {
+            total
+            currentPage
+            lastPage
+            hasNextPage
+            perPage
+        }
+        media (status: $status, type: $type, sort: $sort) {
+            id
+            title {
+                romaji
+            }
+            coverImage {
+                medium
+            }
+            averageScore
+            episodes
+            season
+            seasonYear
+            status
+            nextAiringEpisode {
+                episode
+            }
+            popularity
+        }
+    }
+}
