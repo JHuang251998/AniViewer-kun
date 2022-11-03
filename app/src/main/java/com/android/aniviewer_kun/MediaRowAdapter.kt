@@ -17,6 +17,10 @@ class MediaRowAdapter(private val viewModel: MainViewModel)
 
     inner class VH(val binding: RowMediaBinding): RecyclerView.ViewHolder(binding.root) {
         init {
+            binding.romajiTitle.setOnClickListener {
+                val anime = getItem(adapterPosition)
+                viewModel.doAnimeDetails(it.context, anime)
+            }
         }
     }
 
@@ -41,7 +45,7 @@ class MediaRowAdapter(private val viewModel: MainViewModel)
         val anime = media[position]
         binding.romajiTitle.text = anime?.title?.romaji
         if (anime?.averageScore != null) {
-            binding.averageScore.text = "${anime?.averageScore}%"
+            binding.averageScore.text = "Score: ${anime?.averageScore}%"
         }
 
         if (anime?.status == MediaStatus.RELEASING) {
@@ -58,7 +62,7 @@ class MediaRowAdapter(private val viewModel: MainViewModel)
                     binding.subRowPic
                 )
             } else {
-                binding.subRowPic.setImageResource(R.drawable.ic_cookie_foreground)
+                binding.subRowPic.setImageResource(R.drawable.ic_launcher_foreground)
             }
         }
 

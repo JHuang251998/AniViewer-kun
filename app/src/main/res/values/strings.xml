@@ -14,4 +14,11 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="introduction">Introduction:</string>
+    <string name="start_date">Start Date:</string>
+    <string name="end_date">End Date:</string>
+    <string name="also_known_as">Also known as:</string>
+    <string name="country_of_origin">Country of Origin:</string>
+    <string name="media_format">Media Format:</string>
+    <string name="genres">Genres</string>
 </resources>
