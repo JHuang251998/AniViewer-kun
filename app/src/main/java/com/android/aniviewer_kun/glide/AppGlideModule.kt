@@ -58,7 +58,7 @@ object Glide {
             .error(
                 GlideApp.with(imageView.context)
                     .asBitmap()
-                    .load(R.drawable.ic_cookie_foreground)
+                    .load(R.drawable.ic_launcher_foreground)
                     .apply(glideOptions)
                     .error(R.color.colorAccent)
                     .override(500, 500)

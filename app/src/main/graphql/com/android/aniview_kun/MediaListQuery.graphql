@@ -12,6 +12,7 @@ query MediaListQuery($status: MediaStatus, $type: MediaType!, $sort: [MediaSort]
             title {
                 romaji
             }
+            type
             coverImage {
                 medium
             }
@@ -24,6 +25,21 @@ query MediaListQuery($status: MediaStatus, $type: MediaType!, $sort: [MediaSort]
                 episode
             }
             popularity
+            favourites
+            description
+            startDate {
+                year
+                month
+                day
+            }
+            endDate {
+                year
+                month
+                day
+            }
+            synonyms
+            countryOfOrigin
+            genres
         }
     }
 }
