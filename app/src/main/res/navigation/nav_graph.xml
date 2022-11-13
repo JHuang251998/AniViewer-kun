@@ -9,6 +9,16 @@
         android:id="@+id/nav_airing"
         android:name="com.android.aniviewer_kun.ui.AiringFragment"
         android:label="@string/airing"
+        tools:layout="@layout/fragment_rv_sort" />
+    <fragment
+        android:id="@+id/nav_top100"
+        android:name="com.android.aniviewer_kun.ui.Top100Fragment"
+        android:label="@string/top100"
         tools:layout="@layout/fragment_rv" />
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.android.aniviewer_kun.ui.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_rv_search" />
 
 </navigation>

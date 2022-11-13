@@ -1,5 +1,5 @@
-query MediaListQuery($status: MediaStatus, $type: MediaType!, $sort: [MediaSort]!) {
-    Page {
+query MediaListQuery($status: MediaStatus, $type: MediaType, $sort: [MediaSort], $page: Int, $perPage: Int, $search: String) {
+    Page (page: $page, perPage: $perPage) {
         pageInfo {
             total
             currentPage
@@ -7,7 +7,7 @@ query MediaListQuery($status: MediaStatus, $type: MediaType!, $sort: [MediaSort]
             hasNextPage
             perPage
         }
-        media (status: $status, type: $type, sort: $sort) {
+        media (status: $status, type: $type, sort: $sort, search: $search) {
             id
             title {
                 romaji

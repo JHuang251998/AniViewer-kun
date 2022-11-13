@@ -9,7 +9,7 @@ enum CacheControlScope {
 
 type Page {
     pageInfo: PageInfo
-    media(status: MediaStatus, type: MediaType, sort: [MediaSort]): [Media]
+    media(status: MediaStatus, type: MediaType, sort: [MediaSort], search: String): [Media]
 }
 
 enum MediaSort {
@@ -363,7 +363,7 @@ type FuzzyDate {
 }
 
 type Query {
-    Page: Page
+    Page(page: Int, perPage: Int): Page
     Media: Media
     Title: Title
 }
