@@ -9,4 +9,16 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/airing" />
     </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_top100"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/top100" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/search" />
+    </group>
 </menu>
