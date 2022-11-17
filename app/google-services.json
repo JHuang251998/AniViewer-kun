@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "181886093081",
+    "project_id": "aniviewer-kun",
+    "storage_bucket": "aniviewer-kun.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181886093081:android:82aa03ac7ce5d50ea9e788",
+        "android_client_info": {
+          "package_name": "com.android.aniviewer_kun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181886093081-7djhunnsvnr94jmtnv1roedhps3p3lb2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.aniviewer_kun",
+            "certificate_hash": "bb721ef86ed2bdaa93efab403b54e0f4e887dfa5"
+          }
+        },
+        {
+          "client_id": "181886093081-7enm4vrkfn7vinm2c6hsgfrtt5lj12bo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWyOKAXncKcM3KXkwcpmHS6QpXObHcOsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181886093081-7enm4vrkfn7vinm2c6hsgfrtt5lj12bo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
