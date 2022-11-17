@@ -18,7 +18,7 @@ class MediaRowAdapter(private val viewModel: MainViewModel, private val parentFr
 
     private var media = listOf<MediaListQuery.Medium?>()
 
-    inner class VH(val binding: RowMediaBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class VH(val binding: RowMediaBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
                 val anime = getItem(adapterPosition)
@@ -28,7 +28,8 @@ class MediaRowAdapter(private val viewModel: MainViewModel, private val parentFr
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val rowPostBinding = RowMediaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val rowPostBinding =
+            RowMediaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VH(rowPostBinding)
     }
 
@@ -102,12 +103,12 @@ class MediaRowAdapter(private val viewModel: MainViewModel, private val parentFr
         ): Boolean {
             return false
         }
+
         override fun areContentsTheSame(
             oldItem: MediaListQuery.Medium,
             newItem: MediaListQuery.Medium
         ): Boolean {
             return false
-
         }
     }
 }
