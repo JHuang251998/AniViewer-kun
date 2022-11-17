@@ -17,17 +17,23 @@ import com.apollographql.apollo3.exception.ApolloException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     private val api = AniListApi()
     private val repository = Repository(api)
-    var fetchDone : MutableLiveData<Boolean> = MutableLiveData(false)
+    var fetchDone: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private var media = MutableLiveData<List<MediaListQuery.Medium?>?>()
+    private var viewerData = MutableLiveData<ViewerQuery.Viewer?>()
 
-    fun getMediaListByStatus(status: Optional<MediaStatus?>, type: MediaType, sort: List<MediaSort>) {
+    fun getMediaListByStatus(
+        status: Optional<MediaStatus?>,
+        type: MediaType,
+        sort: List<MediaSort>
+    ) {
         viewModelScope.launch(
-        context = viewModelScope.coroutineContext
-            + Dispatchers.IO) {
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO
+        ) {
             try {
                 val page = repository.getMediaByStatus(status, type, sort)
                 media.postValue(page?.media)
@@ -41,8 +47,27 @@ class MainViewModel: ViewModel() {
         return media
     }
 
+    fun getViewerData() {
+        viewModelScope.launch(
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO
+        ) {
+            try {
+                val viewer = repository.getViewerData()
+                viewerData.postValue(viewer)
+            } catch (e: ApolloException) {
+                println("Error fetching viewer data: $e")
+            }
+        }
+    }
+
+    fun observeViewer(): LiveData<ViewerQuery.Viewer?> {
+        return viewerData
+    }
+
     fun doAnimeDetails(context: Context, anime: MediaListQuery.Medium?) {
-        val startDate = "${anime?.startDate?.month} / ${anime?.startDate?.day} / ${anime?.startDate?.year}"
+        val startDate =
+            "${anime?.startDate?.month} / ${anime?.startDate?.day} / ${anime?.startDate?.year}"
         val endDate = if (anime?.endDate?.month == null) {
             "-"
         } else {

@@ -7,6 +7,17 @@ enum CacheControlScope {
     PRIVATE
 }
 
+type User {
+    id: Int
+    name: String
+    avatar: UserAvatar
+}
+
+type UserAvatar {
+    large: String
+    medium: String
+}
+
 type Page {
     pageInfo: PageInfo
     media(status: MediaStatus, type: MediaType, sort: [MediaSort]): [Media]
@@ -366,6 +377,7 @@ type Query {
     Page: Page
     Media: Media
     Title: Title
+    Viewer: User
 }
 
 scalar Upload

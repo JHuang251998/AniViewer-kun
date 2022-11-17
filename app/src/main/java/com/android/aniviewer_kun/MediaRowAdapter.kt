@@ -10,12 +10,12 @@ import com.android.aniviewer_kun.glide.Glide
 import com.android.aniviewer_kun.type.MediaStatus
 
 
-class MediaRowAdapter(private val viewModel: MainViewModel)
-    : ListAdapter<MediaListQuery.Medium?, MediaRowAdapter.VH>(RedditDiff()) {
+class MediaRowAdapter(private val viewModel: MainViewModel) :
+    ListAdapter<MediaListQuery.Medium?, MediaRowAdapter.VH>(RedditDiff()) {
 
     private var media = listOf<MediaListQuery.Medium?>()
 
-    inner class VH(val binding: RowMediaBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class VH(val binding: RowMediaBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.romajiTitle.setOnClickListener {
                 val anime = getItem(adapterPosition)
@@ -25,7 +25,8 @@ class MediaRowAdapter(private val viewModel: MainViewModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val rowPostBinding = RowMediaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val rowPostBinding =
+            RowMediaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VH(rowPostBinding)
     }
 
@@ -50,8 +51,10 @@ class MediaRowAdapter(private val viewModel: MainViewModel)
 
         if (anime?.status == MediaStatus.RELEASING) {
             var episodeText = ""
-            if (anime?.nextAiringEpisode?.episode != null && anime?.episodes != null) episodeText = "${anime?.nextAiringEpisode?.episode - 1}/${anime?.episodes} episodes - "
-            else if (anime?.nextAiringEpisode?.episode != null) episodeText = "${anime?.nextAiringEpisode.episode} episodes - "
+            if (anime?.nextAiringEpisode?.episode != null && anime?.episodes != null) episodeText =
+                "${anime?.nextAiringEpisode?.episode - 1}/${anime?.episodes} episodes - "
+            else if (anime?.nextAiringEpisode?.episode != null) episodeText =
+                "${anime?.nextAiringEpisode.episode} episodes - "
             else if (anime?.episodes != null) episodeText = "${anime?.episodes} episodes - "
             binding.mediaInfo.text =
                 "${episodeText}${anime?.season.toString()} ${anime?.seasonYear}"
@@ -80,12 +83,12 @@ class MediaRowAdapter(private val viewModel: MainViewModel)
         ): Boolean {
             return false
         }
+
         override fun areContentsTheSame(
             oldItem: MediaListQuery.Medium,
             newItem: MediaListQuery.Medium
         ): Boolean {
             return false
-
         }
     }
 }
