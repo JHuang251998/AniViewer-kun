@@ -10,8 +10,8 @@ import com.apollographql.apollo3.api.BooleanExpression
 import com.apollographql.apollo3.api.Optional
 
 class Repository(private val api: AniListApi) {
-    suspend fun getMediaByStatus(status: Optional<MediaStatus?>, type: MediaType, sort: List<MediaSort>): MediaListQuery.Page? {
-        val response = api.getApolloClient().query(MediaListQuery(status, type, sort)).execute()
+    suspend fun getMediaList(status: Optional<MediaStatus?>, type: Optional<MediaType?>, sort: Optional<List<MediaSort>>, currentPage: Optional<Int?>, perPage: Optional<Int?>, search: Optional<String?>): MediaListQuery.Page? {
+        val response = api.getApolloClient().query(MediaListQuery(status, type, sort, currentPage, perPage, search)).execute()
         return response.data?.Page
     }
 

@@ -24,21 +24,76 @@ class MainViewModel : ViewModel() {
 
     private var media = MutableLiveData<List<MediaListQuery.Medium?>?>()
     private var viewerData = MutableLiveData<ViewerQuery.Viewer?>()
+    private var searchMediaResults = MutableLiveData<List<MediaListQuery.Medium?>?>()
 
-    fun getMediaListByStatus(
-        status: Optional<MediaStatus?>,
-        type: MediaType,
-        sort: List<MediaSort>
-    ) {
+    fun getMediaListByStatus(status: MediaStatus, type: MediaType, sort: List<MediaSort>, currentPage: Int, perPage: Int) {
         viewModelScope.launch(
             context = viewModelScope.coroutineContext
                     + Dispatchers.IO
         ) {
             try {
-                val page = repository.getMediaByStatus(status, type, sort)
+                val page = repository.getMediaList(
+                    Optional.present(status),
+                    Optional.present(type),
+                    Optional.present(sort),
+                    Optional.present(currentPage),
+                    Optional.present(perPage),
+                    Optional.absent()
+                )
                 media.postValue(page?.media)
             } catch (e: ApolloException) {
                 println("Error fetching media: $e")
+            }
+        }
+    }
+
+    fun searchMedia(search: String, perPage: Int) {
+        viewModelScope.launch(
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO) {
+            try {
+                val page = repository.getMediaList(
+                    Optional.absent(),
+                    Optional.Present(MediaType.ANIME),
+                    Optional.present(listOf(MediaSort.POPULARITY_DESC)),
+                    Optional.absent(),
+                    Optional.present(perPage),
+                    Optional.present(search)
+                )
+                searchMediaResults.postValue(page?.media)
+            } catch (e: ApolloException) {
+                println("Error fetching media: $e")
+            }
+        }
+    }
+
+    fun getTop100Media(type: MediaType, sort:  List<MediaSort>) {
+        viewModelScope.launch(
+            context = viewModelScope.coroutineContext
+                    + Dispatchers.IO) {
+            try {
+                val mediaList = repository.getMediaList(
+                    Optional.absent(),
+                    Optional.present(type),
+                    Optional.present(sort),
+                    Optional.present(1),
+                    Optional.absent(),
+                    Optional.absent()
+                )?.media?.toMutableList()
+                val page2Media = repository.getMediaList(
+                    Optional.absent(),
+                    Optional.present(type),
+                    Optional.present(sort),
+                    Optional.present(2),
+                    Optional.absent(),
+                    Optional.absent()
+                )?.media
+                if (page2Media != null) {
+                    mediaList?.addAll(page2Media)
+                }
+                media.postValue(mediaList)
+            } catch (e: ApolloException) {
+                println("Error fetching top 100: $e")
             }
         }
     }
@@ -63,6 +118,14 @@ class MainViewModel : ViewModel() {
 
     fun observeViewer(): LiveData<ViewerQuery.Viewer?> {
         return viewerData
+    }
+    
+    fun observeSearchMediaResults(): LiveData<List<MediaListQuery.Medium?>?> {
+        return searchMediaResults
+    }
+
+    fun clearMedia() {
+        media.postValue(null)
     }
 
     fun doAnimeDetails(context: Context, anime: MediaListQuery.Medium?) {

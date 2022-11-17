@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,17 +23,17 @@ import com.android.aniviewer_kun.type.MediaStatus
 import com.android.aniviewer_kun.type.MediaType
 import com.apollographql.apollo3.api.Optional
 
-class AiringFragment : Fragment() {
+class Top100Fragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
-    private var _binding: FragmentRvSortBinding? = null
+    private var _binding: FragmentRvBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adapter: MediaRowAdapter
     private lateinit var recyclerView: RecyclerView
 
-    private var currentSort = listOf(MediaSort.POPULARITY_DESC)
+    private var currentSort = listOf(MediaSort.SCORE_DESC)
 
-    private fun initAdapter(binding: FragmentRvSortBinding): MediaRowAdapter {
+    private fun initAdapter(binding: FragmentRvBinding): MediaRowAdapter {
         val adapter = MediaRowAdapter(viewModel, this)
         recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
@@ -43,13 +44,7 @@ class AiringFragment : Fragment() {
 
     private fun initSwipeLayout(swipe: SwipeRefreshLayout) {
         swipe.setOnRefreshListener {
-            viewModel.getMediaListByStatus(
-                MediaStatus.RELEASING,
-                MediaType.ANIME,
-                currentSort,
-                1,
-                50
-            )
+            viewModel.getTop100Media(MediaType.ANIME, currentSort)
         }
 
         viewModel.fetchDone.observe(viewLifecycleOwner) {
@@ -62,7 +57,7 @@ class AiringFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRvSortBinding.inflate(inflater, container, false)
+        _binding = FragmentRvBinding.inflate(inflater, container, false)
         viewModel.clearMedia()
         return binding.root
     }
@@ -77,43 +72,9 @@ class AiringFragment : Fragment() {
             android.R.layout.simple_spinner_item
         )
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.sortSpinner.adapter = cityAdapter
 
+        viewModel.getTop100Media(MediaType.ANIME, currentSort)
 
-        binding.sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?, position: Int, id: Long
-            ) {
-                val sortOptions = resources.getStringArray(R.array.sortOptions)
-                when (sortOptions[position]) {
-                    "Popularity" -> currentSort = listOf(MediaSort.POPULARITY_DESC)
-                    "Score" -> currentSort = listOf(MediaSort.SCORE_DESC)
-                    "Start Date" -> currentSort = listOf(MediaSort.START_DATE_DESC)
-                    "Title" -> currentSort = listOf(MediaSort.TITLE_ROMAJI_DESC)
-                }
-
-                println(currentSort)
-                viewModel.getMediaListByStatus(
-                    MediaStatus.RELEASING,
-                    MediaType.ANIME,
-                    currentSort,
-                    1,
-                    50
-                )
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-            }
-        }
-
-        viewModel.getMediaListByStatus(
-            MediaStatus.RELEASING,
-            MediaType.ANIME,
-            currentSort,
-            1,
-            50
-        )
         viewModel.observeMedia().observe(viewLifecycleOwner) {
             adapter.setMedia(it)
             adapter.submitList(it)

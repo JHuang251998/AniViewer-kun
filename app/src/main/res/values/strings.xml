@@ -3,6 +3,8 @@
     <string name="airing">Now Airing</string>
     <string name="menu">Menu</string>
     <string name="filterSort">Sort by:</string>
+    <string name="top100">Top 100</string>
+    <string name="search">Search</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
