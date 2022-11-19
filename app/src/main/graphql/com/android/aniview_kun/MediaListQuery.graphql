@@ -15,6 +15,7 @@ query MediaListQuery($status: MediaStatus, $type: MediaType, $sort: [MediaSort],
             type
             coverImage {
                 medium
+                extraLarge
             }
             averageScore
             episodes

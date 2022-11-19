@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="LOGIN"
+            android:text="@string/login"
             android:textAlignment="center" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -44,12 +44,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Username: "
+        android:text="@string/username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/userID"
-        android:text="User ID: "
+        android:text="@string/user_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          />

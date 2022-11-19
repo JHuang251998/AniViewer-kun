@@ -351,6 +351,8 @@ enum CountryCode {
 
 type MediaCoverImage {
     medium: String
+    large: String
+    extraLarge: String
 }
 
 type Title {

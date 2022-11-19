@@ -23,4 +23,7 @@
     <string name="country_of_origin">Country of Origin:</string>
     <string name="media_format">Media Format:</string>
     <string name="genres">Genres:</string>
+    <string name="login">LOGIN</string>
+    <string name="username">Username:</string>
+    <string name="user_id">User ID:</string>
 </resources>
