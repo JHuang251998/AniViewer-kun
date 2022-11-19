@@ -35,7 +35,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.AnimeDetails"
+            android:name=".AnimeDetails"
             android:label="AnimeDetails"
             android:parentActivityName=".MainActivity">
             <meta-data

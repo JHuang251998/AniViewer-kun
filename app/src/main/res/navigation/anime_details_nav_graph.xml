@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/anime_details_nav_graph"
+    app:startDestination="@id/animeDetailsFragment">
+
+    <fragment
+        android:id="@+id/animeDetailsFragment"
+        android:name="com.android.aniviewer_kun.ui.AnimeDetailsFragment"
+        android:label="Anime Details Fragment"
+        tools:layout="@layout/fragment_anime_details">
+        <action
+            android:id="@+id/action_AnimeDetailsFragment_to_SingleImageFragment"
+            app:destination="@id/singleImageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out">
+            <argument
+                android:name="imageURL"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/singleImageFragment"
+        android:name="com.android.aniviewer_kun.ui.SingleImageFragment"
+        android:label="Single Image Fragment"
+        tools:layout="@layout/fragment_single_image">
+        <argument
+            android:name="imageURL"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
