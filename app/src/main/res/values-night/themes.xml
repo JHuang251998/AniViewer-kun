@@ -2,15 +2,26 @@
     <!-- Base application theme. -->
     <style name="Theme.AniViewkun" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/babyBlue</item>
+        <item name="colorPrimaryVariant">@color/skyBlue</item>
+        <item name="colorBackgroundFloating">@color/lightNavy</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/darkNavy</item>
+        <item name="colorSecondaryVariant">@color/darkGray</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/softBlue</item>
         <!-- Customize your theme here. -->
+        <item name="colorControlActivated">@color/skyBlue</item>
+        <item name="contrast">@color/white</item>
     </style>
+
+    <style name="Theme.AniViewkun.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AniViewkun.AppBarOverlay" parent="Theme.AppCompat.Light" />
+
+    <style name="Theme.AniViewkun.PopupOverlay" parent="Theme.AppCompat.Light" />
 </resources>

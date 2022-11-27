@@ -8,4 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="softBlue">#004daa</color>
+    <color name="darkGray">#454a4d</color>
+    <color name="lightGray">#9fadbd</color>
+    <color name="lightBlueBackground">#dde6ee</color>
+    <color name="lightText">#5c728a</color>
+    <color name="babyBlue">#8db2db</color>
+    <color name="skyBlue">#3db4f2</color>
+    <color name="darkNavy">#0b1622</color>
+    <color name="lightNavy">#151f2e</color>
 </resources>

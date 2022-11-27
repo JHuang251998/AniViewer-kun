@@ -1,14 +1,15 @@
 package com.android.aniviewer_kun
 
+import android.app.TaskStackBuilder
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,7 +19,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.aniviewer_kun.api.AniListUser
 import com.android.aniviewer_kun.databinding.ActivityMainBinding
 import com.android.aniviewer_kun.glide.Glide
-import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +49,18 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        binding.appBarMain.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_settings -> {
+                    val i = Intent(this, SettingsManager::class.java)
+                    TaskStackBuilder.create(this)
+                        .addNextIntentWithParentStack(i)
+                        .startActivities();
+                }
+            }
+            true
+        }
 
         val headerLayout = navView.getHeaderView(0)
         val loginButton = headerLayout.findViewById<Button>(R.id.loginButton)

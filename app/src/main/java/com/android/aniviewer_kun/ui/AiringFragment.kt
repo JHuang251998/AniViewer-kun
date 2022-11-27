@@ -53,7 +53,7 @@ class AiringFragment : Fragment() {
         }
 
         viewModel.fetchDone.observe(viewLifecycleOwner) {
-            binding.swipeRefreshLayout.isRefreshing = false
+            binding.swipeRefreshLayoutSort.isRefreshing = false
         }
     }
 
@@ -69,7 +69,7 @@ class AiringFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = initAdapter(binding)
-        initSwipeLayout(binding.swipeRefreshLayout)
+        initSwipeLayout(binding.swipeRefreshLayoutSort)
 
         val cityAdapter = ArrayAdapter.createFromResource(
             binding.root.context,
@@ -119,10 +119,5 @@ class AiringFragment : Fragment() {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.swipeRefreshLayout.setOnRefreshListener(null)
     }
 }
