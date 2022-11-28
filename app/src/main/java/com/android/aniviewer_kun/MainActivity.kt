@@ -7,7 +7,6 @@ import android.view.Menu
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -18,7 +17,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.aniviewer_kun.api.AniListUser
 import com.android.aniviewer_kun.databinding.ActivityMainBinding
 import com.android.aniviewer_kun.glide.Glide
-import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +42,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_airing,
                 R.id.nav_top100,
-                R.id.nav_search
+                R.id.nav_search,
+                R.id.nav_favourites
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

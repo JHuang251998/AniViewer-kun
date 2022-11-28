@@ -155,4 +155,33 @@ class MainViewModel : ViewModel() {
         }
         context.startActivity(intent)
     }
+
+    fun doAnimeDetails(context: Context, anime: ViewerQuery.Node?) {
+        val startDate =
+            "${anime?.startDate?.month} / ${anime?.startDate?.day} / ${anime?.startDate?.year}"
+        val endDate = if (anime?.endDate?.month == null) {
+            "-"
+        } else {
+            "${anime.endDate.month} / ${anime.endDate.day} / ${anime.endDate.year}"
+        }
+        val otherNames = anime?.synonyms?.joinToString(", ")
+        val genres = anime?.genres?.joinToString(", ")
+
+        val intent = Intent(context, AnimeDetails::class.java)
+        if (anime != null) {
+            intent.putExtra(AnimeDetails.animeTitleRomajiKey, anime.title?.romaji)
+            intent.putExtra(AnimeDetails.animePicKey, anime.coverImage?.extraLarge)
+            intent.putExtra(AnimeDetails.animeAverageScore, anime.averageScore.toString())
+            intent.putExtra(AnimeDetails.animeFavorites, anime.favourites.toString())
+            intent.putExtra(AnimeDetails.animePopularity, anime.popularity.toString())
+            intent.putExtra(AnimeDetails.animeDescription, anime.description)
+            intent.putExtra(AnimeDetails.animeFormat, anime.type?.name)
+            intent.putExtra(AnimeDetails.animeStartDate, startDate)
+            intent.putExtra(AnimeDetails.animeEndDate, endDate)
+            intent.putExtra(AnimeDetails.animeOtherNames, otherNames)
+            intent.putExtra(AnimeDetails.animeCountryOfOrigin, anime.countryOfOrigin?.name)
+            intent.putExtra(AnimeDetails.animeGenres, genres)
+        }
+        context.startActivity(intent)
+    }
 }

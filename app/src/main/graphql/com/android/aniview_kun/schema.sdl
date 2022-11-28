@@ -11,11 +11,22 @@ type User {
     id: Int
     name: String
     avatar: UserAvatar
+    favourites: Favourites
 }
 
 type UserAvatar {
     large: String
     medium: String
+}
+
+type Favourites {
+    anime: MediaConnection
+    manga: MediaConnection
+}
+
+type MediaConnection {
+    nodes: [Media]
+    pageInfo: PageInfo
 }
 
 type Page {

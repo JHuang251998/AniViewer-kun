@@ -10,8 +10,16 @@ import com.apollographql.apollo3.api.BooleanExpression
 import com.apollographql.apollo3.api.Optional
 
 class Repository(private val api: AniListApi) {
-    suspend fun getMediaList(status: Optional<MediaStatus?>, type: Optional<MediaType?>, sort: Optional<List<MediaSort>>, currentPage: Optional<Int?>, perPage: Optional<Int?>, search: Optional<String?>): MediaListQuery.Page? {
-        val response = api.getApolloClient().query(MediaListQuery(status, type, sort, currentPage, perPage, search)).execute()
+    suspend fun getMediaList(
+        status: Optional<MediaStatus?>,
+        type: Optional<MediaType?>,
+        sort: Optional<List<MediaSort>>,
+        currentPage: Optional<Int?>,
+        perPage: Optional<Int?>,
+        search: Optional<String?>
+    ): MediaListQuery.Page? {
+        val response = api.getApolloClient()
+            .query(MediaListQuery(status, type, sort, currentPage, perPage, search)).execute()
         return response.data?.Page
     }
 
@@ -25,6 +33,7 @@ class Repository(private val api: AniListApi) {
         AniListUser.userName = user?.name
         AniListUser.userID = user?.id
         AniListUser.avatar = user?.avatar?.medium
+        AniListUser.favourites = user?.favourites?.anime?.nodes as MutableList<ViewerQuery.Node?>?
 
         return response.data?.Viewer
     }

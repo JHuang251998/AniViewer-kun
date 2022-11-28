@@ -20,5 +20,10 @@
         android:name="com.android.aniviewer_kun.ui.SearchFragment"
         android:label="@string/search"
         tools:layout="@layout/fragment_rv_search" />
+    <fragment
+        android:id="@+id/nav_favourites"
+        android:name="com.android.aniviewer_kun.ui.FavouritesFragment"
+        android:label="Favourites"
+        tools:layout="@layout/fragment_rv" />
 
 </navigation>

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.browser.customtabs.CustomTabsIntent
 import com.android.aniviewer_kun.MainViewModel
+import com.android.aniviewer_kun.ViewerQuery
 import okhttp3.internal.applyConnectionSpec
 import java.io.File
 
@@ -16,6 +17,7 @@ object AniListUser {
     var userName: String? = null
     var userID: Int? = null
     var avatar: String? = null
+    var favourites: MutableList<ViewerQuery.Node?>? = null
 
     fun loginIntent(context: Context) {
         val clientID = 9991
@@ -35,6 +37,7 @@ object AniListUser {
         userName = null
         userID = null
         avatar = null
+        favourites = null
 
         if ("anilistToken" in context.fileList()) {
             File(context.filesDir, "anilistToken").delete()
