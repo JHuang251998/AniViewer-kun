@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.constraintlayout.motion.widget.OnSwipe
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -61,7 +62,13 @@ class FavouritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = initAdapter(binding)
-        initSwipeLayout(binding.swipeRefreshLayout)
+
+        if (AniListUser.token != null) {
+            initSwipeLayout(binding.swipeRefreshLayout)
+        } else {
+            Toast.makeText(this.context, "Please login first to see favorites", Toast.LENGTH_SHORT).show()
+            binding.swipeRefreshLayout.isEnabled = false
+        }
 
         val cityAdapter = ArrayAdapter.createFromResource(
             binding.root.context,
@@ -69,8 +76,6 @@ class FavouritesFragment : Fragment() {
             android.R.layout.simple_spinner_item
         )
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-//        viewModel.getViewerData()
 
         viewModel.observeViewer().observe(viewLifecycleOwner) {
             adapter.setMedia(AniListUser.favourites)
