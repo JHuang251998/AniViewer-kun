@@ -1,6 +1,5 @@
 package com.android.aniviewer_kun.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +14,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.aniviewer_kun.MainViewModel
 import com.android.aniviewer_kun.MediaRowAdapter
 import com.android.aniviewer_kun.R
-import com.android.aniviewer_kun.databinding.FragmentRvBinding
 import com.android.aniviewer_kun.databinding.FragmentRvSortBinding
 import com.android.aniviewer_kun.type.MediaSort
 import com.android.aniviewer_kun.type.MediaStatus
 import com.android.aniviewer_kun.type.MediaType
-import com.apollographql.apollo3.api.Optional
 
 class AiringFragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
@@ -107,13 +104,13 @@ class AiringFragment : Fragment() {
             }
         }
 
-        viewModel.getMediaListByStatus(
-            MediaStatus.RELEASING,
-            MediaType.ANIME,
-            currentSort,
-            1,
-            50
-        )
+//        viewModel.getMediaListByStatus(
+//            MediaStatus.RELEASING,
+//            MediaType.ANIME,
+//            currentSort,
+//            1,
+//            50
+//        )
         viewModel.observeMedia().observe(viewLifecycleOwner) {
             adapter.setMedia(it)
             adapter.submitList(it)

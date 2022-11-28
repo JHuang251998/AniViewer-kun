@@ -13,8 +13,8 @@ import com.android.aniviewer_kun.type.MediaStatus
 import com.android.aniviewer_kun.ui.Top100Fragment
 
 
-class MediaRowAdapter(private val viewModel: MainViewModel, private val parentFragment: Fragment)
-    : ListAdapter<MediaListQuery.Medium?, MediaRowAdapter.VH>(RedditDiff()) {
+class MediaRowAdapter(private val viewModel: MainViewModel, private val parentFragment: Fragment) :
+    ListAdapter<MediaListQuery.Medium?, MediaRowAdapter.VH>(RedditDiff()) {
 
     private var media = listOf<MediaListQuery.Medium?>()
 
@@ -67,8 +67,10 @@ class MediaRowAdapter(private val viewModel: MainViewModel, private val parentFr
         }
 
         var episodeText = ""
-        if (anime?.nextAiringEpisode?.episode != null && anime?.episodes != null) episodeText = "${anime?.nextAiringEpisode?.episode - 1}/${anime?.episodes} episodes"
-        else if (anime?.nextAiringEpisode?.episode != null) episodeText = "${anime?.nextAiringEpisode.episode} episodes"
+        if (anime?.nextAiringEpisode?.episode != null && anime?.episodes != null) episodeText =
+            "${anime?.nextAiringEpisode?.episode - 1}/${anime?.episodes} episodes"
+        else if (anime?.nextAiringEpisode?.episode != null) episodeText =
+            "${anime?.nextAiringEpisode.episode} episodes"
         else if (anime?.episodes != null) {
             episodeText = "${anime?.episodes} episode"
             if (anime?.episodes > 1) episodeText += "s"

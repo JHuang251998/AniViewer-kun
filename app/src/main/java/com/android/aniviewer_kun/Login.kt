@@ -12,7 +12,6 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val data: Uri? = intent?.data
-        Log.d("XXX", "HI")
         Log.d("XXX", data.toString())
         try {
             AniListUser.token = Regex("""(?<=access_token=).+(?=&token_type)""").find(data.toString())!!.value

@@ -6,5 +6,44 @@ query ViewerQuery {
             large
             medium
         }
+        favourites {
+            anime {
+                nodes {
+                    id
+                    title {
+                        romaji
+                    }
+                    type
+                    coverImage {
+                        medium
+                        extraLarge
+                    }
+                    averageScore
+                    episodes
+                    season
+                    seasonYear
+                    status
+                    nextAiringEpisode {
+                        episode
+                    }
+                    popularity
+                    favourites
+                    description
+                    startDate {
+                        year
+                        month
+                        day
+                    }
+                    endDate {
+                        year
+                        month
+                        day
+                    }
+                    synonyms
+                    countryOfOrigin
+                    genres
+                }
+            }
+        }
     }
 }
